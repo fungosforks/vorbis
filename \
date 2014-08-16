@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 2.8)
+
+project(vorbis C) 
+
+#
+# Config
+#
+
+set(vorbis_VERSION 1.3.4)
+
+#
+# Internal
+#
+
+
+#
+# Build Library
+#
+
+add_subdirectory("libogg-1.3.2")
+include_directories("libogg-1.3.2/include")
+include_directories("include")
+include_directories("lib")
+file(GLOB_RECURSE vorbis_HEADERS lib/*.h)
+file(GLOB_RECURSE vorbis_SOURCES lib/*.c ${vorbis_HEADERS})
+add_library(vorbis ${vorbis_SOURCES})
+
+#
+# Install
+#
+install(TARGETS ${PROJECT_NAME} 
+		DESTINATION ${CMAKE_INSTALL_PREFIX}/lib 
+		COMPONENT ${PROJECT_NAME}
+)
+
+install(FILES ${vorbis_HEADERS} 
+		DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME}
+)
