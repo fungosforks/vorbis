@@ -22,6 +22,7 @@ include_directories("include")
 include_directories("lib")
 include_directories("${OGG_INCLUDE_DIR}")
 file(GLOB_RECURSE vorbis_HEADERS lib/*.h)
+file(GLOB_RECURSE vorbis_INSTALL_HEADERS include/vorbis/*.h)
 file(GLOB_RECURSE vorbis_SOURCES lib/*.c ${vorbis_HEADERS})
 add_library(vorbis ${vorbis_SOURCES})
 
@@ -33,6 +34,6 @@ install(TARGETS ${PROJECT_NAME}
 		COMPONENT ${PROJECT_NAME}
 )
 
-install(FILES ${vorbis_HEADERS} 
+install(FILES ${vorbis_INSTALL_HEADERS} 
 		DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${PROJECT_NAME}
 )
